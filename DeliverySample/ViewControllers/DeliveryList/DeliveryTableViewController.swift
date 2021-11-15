@@ -18,7 +18,7 @@ class DeliveryTableViewController: UITableViewController, NSFetchedResultsContro
     }()
     private var currentOffset: Int = Constants.zero
     private var isLastPage: Bool = false
-    private var contentUpdated = false
+    var contentUpdated = false
     private(set) var arrayDelivery = [Delivery]()
     
     private var activityIndicatorView: UIActivityIndicatorView = {
@@ -35,7 +35,7 @@ class DeliveryTableViewController: UITableViewController, NSFetchedResultsContro
        return view
     }()
     
-    private var selectedIndexPath: IndexPath?
+    var selectedIndexPath: IndexPath?
     private var observerForFavoriteDelivery: NSObjectProtocol?
     private var observerForFetchStatus: NSKeyValueObservation?
     private var observerForResults: NSKeyValueObservation?

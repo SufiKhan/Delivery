@@ -67,7 +67,7 @@ class DeliveryTableViewControllerTests: XCTestCase {
             }
         }
         let expectation = XCTestExpectation(description: "errorCallback")
-        sut?.fetchDeliveriesFromNetworkManager()
+        sut?.viewModel.fetchDeliveriesFromNetworkManager(offset: 0, isLastPage: false)
         _ = XCTWaiter.wait(for: [expectation], timeout: 0.1)
         XCTAssertEqual(errorCode, 400)
         XCTAssertTrue(dataSource.cellForRowCalled)
@@ -92,20 +92,9 @@ class DeliveryTableViewControllerTests: XCTestCase {
             }
         }
         let expectation = XCTestExpectation(description: "successCallBack")
-        sut?.fetchDeliveriesFromNetworkManager()
+        sut?.viewModel.fetchDeliveriesFromNetworkManager(offset: 0, isLastPage: false)
         _ = XCTWaiter.wait(for: [expectation], timeout: 0.1)
         XCTAssertTrue(didSucceed)
         XCTAssertTrue(dataSource.cellForRowCalled)
-    }
-    
-    func testShowError() {
-        let apiClientManager = DeliveryNetworkManager.init(session: MockURLSession(), apiConfig: ErrorApiProvider())
-        sut = DeliveryTableViewController(dataManager: mockDataManager,apiClientManager: apiClientManager)
-        let nav = MockUINavigationController(rootViewController: sut!)
-        apiClientManager.fetchDeliveriesFromServer(offset: 0, limit: 20) { _ in }
-        let expectation = XCTestExpectation(description: "showError")
-        sut?.fetchDeliveriesFromNetworkManager()
-        _ = XCTWaiter.wait(for: [expectation], timeout: 0.1)
-        XCTAssertTrue(nav.mockPresentViewCalled)
     }
 }

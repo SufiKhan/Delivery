@@ -29,7 +29,7 @@ class DeliveryDetailVCTests: XCTestCase {
         entity.isFavorite = false
         mockDM.saveInCoreDataForTest = true
         mockDM.saveDeliveryContext()
-        let vm = DeliveryViewModel(entity)
+        let vm = DeliveryTableCellViewModel(entity)
         sut = DeliveryDetailViewController(viewModel: vm)
        
         let request: NSFetchRequest<Delivery> = Delivery.fetchRequest()
