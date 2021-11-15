@@ -6,7 +6,6 @@
 - Core Data
 - Dependency Injection
 - FetchResultController 
-- Unit Test for List and Detail View Controllers
 - No Storyboard or XIB used
 
 ## No internet case
